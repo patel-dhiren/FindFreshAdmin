@@ -8,6 +8,7 @@ import 'package:fresh_find_admin/models/vendor.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../models/category.dart';
+import '../models/order.dart';
 import '../models/user.dart';
 
 
@@ -153,6 +154,23 @@ class FirebaseService {
       Navigator.pop(context);
       return false;
     }
+  }
+
+  Stream<List<Order>> get orderStream {
+
+
+    return _database
+        .ref()
+        .child('orders')
+        .onValue
+        .map((event) {
+      dynamic ordersMap = event.snapshot.value ?? {};
+      List<Order> orders = [];
+      ordersMap.forEach((key, value) {
+        orders.add(Order.fromJson(Map<String, dynamic>.from(value)));
+      });
+      return orders;
+    });
   }
 
 

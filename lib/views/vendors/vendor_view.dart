@@ -113,69 +113,68 @@ class VendorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-       return Card(
-        elevation: 1,
-        surfaceTintColor: Colors.white,
-        margin: EdgeInsets.all(4),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
+    return Card(
+      elevation: 1,
+      surfaceTintColor: Colors.white,
+      margin: EdgeInsets.all(4),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              vendor.businessName,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 4),
+            Row(
+              children: [
+                Icon(Icons.person, color: Colors.orange),
+                SizedBox(width: 8),
+                Text(vendor.vendorName),
+              ],
+            ),
+            SizedBox(height: 4),
+            Row(
+              children: [
+                Icon(Icons.account_box_rounded, color: Colors.orange),
+                SizedBox(width: 8),
+                Text(vendor.id!),
+              ],
+            ),
+            SizedBox(height: 4),
+            Row(
+              children: [
+                Icon(Icons.phone, color: Colors.green),
+                SizedBox(width: 8),
+                Text(vendor.contactNumber),
+              ],
+            ),
+            SizedBox(height: 4),
+            Row(
+              children: [
+                Icon(Icons.location_on, color: Colors.red),
+                SizedBox(width: 8),
+                Expanded(child: Text('${vendor.address}, ${vendor.city}, ${vendor.state}')),
+              ],
+            ),
+            SizedBox(height: 4),
+            Row(
+              children: [
+                Icon(Icons.email, color: Colors.blue),
+                SizedBox(width: 8),
+                Text(vendor.email),
+              ],
+            ),
+          ],
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                vendor.businessName,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 4),
-              Row(
-                children: [
-                  Icon(Icons.person, color: Colors.orange),
-                  SizedBox(width: 8),
-                  Text(vendor.vendorName),
-                ],
-              ),
-              SizedBox(height: 4),
-              Row(
-                children: [
-                  Icon(Icons.account_box_rounded, color: Colors.orange),
-                  SizedBox(width: 8),
-                  Text(vendor.id!),
-                ],
-              ),
-              SizedBox(height: 4),
-              Row(
-                children: [
-                  Icon(Icons.phone, color: Colors.green),
-                  SizedBox(width: 8),
-                  Text(vendor.contactNumber),
-                ],
-              ),
-              SizedBox(height: 4),
-              Row(
-                children: [
-                  Icon(Icons.location_on, color: Colors.red),
-                  SizedBox(width: 8),
-                  Expanded(child: Text('${vendor.address}, ${vendor.city}, ${vendor.state}')),
-                ],
-              ),
-              SizedBox(height: 4),
-              Row(
-                children: [
-                  Icon(Icons.email, color: Colors.blue),
-                  SizedBox(width: 8),
-                  Text(vendor.email),
-                ],
-              ),
-            ],
-          ),
-        ),
-      );
+      ),
+    );
   }
-
 }
