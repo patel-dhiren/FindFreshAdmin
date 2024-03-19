@@ -10,20 +10,23 @@ class Vendor {
   String city;
   String? categoryId;
   String? profileImage;
+  bool? isActive;
   int createdAt = DateTime.now().millisecondsSinceEpoch;
 
-  Vendor(
-      {this.id,
-        required this.email,
-        required this.password,
-        required this.vendorName,
-        required this.businessName,
-        required this.contactNumber,
-        required this.address,
-        required this.state,
-        required this.city,
-        this.categoryId,
-        this.profileImage});
+  Vendor({
+    this.id,
+    required this.email,
+    required this.password,
+    required this.vendorName,
+    required this.businessName,
+    required this.contactNumber,
+    required this.address,
+    required this.state,
+    required this.city,
+    this.categoryId,
+    this.profileImage,
+    this.isActive,
+  });
 
   factory Vendor.fromJson(Map<dynamic, dynamic> json) {
     return Vendor(
@@ -38,6 +41,7 @@ class Vendor {
       city: json["city"],
       profileImage: json["profileImage"],
       categoryId: json["categoryId"],
+      isActive: json["isActive"],
     );
   }
 
@@ -55,6 +59,7 @@ class Vendor {
       "profileImage": this.profileImage,
       "categoryId": this.categoryId,
       "createdAt": this.createdAt,
+      "isActive": this.isActive,
     };
   }
 }

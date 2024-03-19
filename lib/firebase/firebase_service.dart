@@ -53,6 +53,31 @@ class FirebaseService {
     });
   }
 
+  Future<void> updateUserStatus(bool status, String uid) async {
+    try {
+      await _database.ref("users").child(uid).update({
+        'isActive': status,
+        // You can add more fields to update here if needed
+      });
+    } catch (e) {
+      print('Error updating user data: $e');
+      throw e;
+    }
+  }
+
+  Future<void> updateVendorStatus(bool status, String uid) async {
+    try {
+      await _database.ref("vendors").child(uid).update({
+        'isActive': status,
+        // You can add more fields to update here if needed
+      });
+    } catch (e) {
+      print('Error updating vendor status: $e');
+      throw e;
+    }
+  }
+
+
   Stream<List<Vendor>> get vendorStream {
     return _database.ref().child('vendors').onValue.map((event) {
       List<Vendor> vendors = [];

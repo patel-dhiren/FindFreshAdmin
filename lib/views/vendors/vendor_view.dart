@@ -125,12 +125,24 @@ class VendorCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              vendor.businessName,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    vendor.businessName,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Switch(
+                  value: vendor.isActive ?? true,
+                  onChanged: (value) {
+                    FirebaseService().updateVendorStatus(value, vendor.id!);
+                  },
+                )
+              ],
             ),
             SizedBox(height: 4),
             Row(
@@ -161,7 +173,9 @@ class VendorCard extends StatelessWidget {
               children: [
                 Icon(Icons.location_on, color: Colors.red),
                 SizedBox(width: 8),
-                Expanded(child: Text('${vendor.address}, ${vendor.city}, ${vendor.state}')),
+                Expanded(
+                    child: Text(
+                        '${vendor.address}, ${vendor.city}, ${vendor.state}')),
               ],
             ),
             SizedBox(height: 4),

@@ -130,13 +130,26 @@ class UserCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              user.name,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    user.name,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Switch(
+                  value: user.isActive,
+                  onChanged: (value) {
+                    FirebaseService().updateUserStatus(value, user.id);
+                  },
+                )
+              ],
             ),
+
             SizedBox(height: 4),
             Row(
               children: [
